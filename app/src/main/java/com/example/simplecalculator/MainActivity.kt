@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
             SimpleCalculatorTheme (darkTheme = true) {
                 val viewModel = viewModel<CalculatorViewModel>()
                 val state = viewModel.state
-                CalculatorUI(state = state , onAction = {viewModel::onAction})
+                CalculatorUI(state = state , onAction = {viewModel.onAction(it)})
             }
         }
     }
