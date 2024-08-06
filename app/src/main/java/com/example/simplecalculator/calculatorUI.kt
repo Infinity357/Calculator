@@ -61,7 +61,7 @@ fun CalculatorUI(
         Column(modifier = Modifier.fillMaxWidth().padding(10.dp),
             verticalArrangement = Arrangement.spacedBy(7.dp)
         ) {
-            Text(text = state.value.num1 + (state.value.operator?:"")+state.value.num2 , modifier = Modifier
+            Text(text = state.value.num1 + (state.value.operator?.operator ?:"")+state.value.num2 , modifier = Modifier
                 .fillMaxWidth()
                 .padding(30.dp)
                 .weight(7f)
