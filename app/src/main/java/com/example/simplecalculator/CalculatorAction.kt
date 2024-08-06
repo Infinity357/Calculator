@@ -15,4 +15,5 @@ sealed class Operator(val operator : String){
     object Multiply : Operator("*")
     object Divide : Operator("/")
     object Modulus : Operator("%")
+    object Power : Operator("^")
 }

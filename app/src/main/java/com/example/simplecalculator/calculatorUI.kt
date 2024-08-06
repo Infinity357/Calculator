@@ -1,11 +1,13 @@
 package com.example.simplecalculator
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -53,7 +56,7 @@ fun CalculatorButton(
 
 @Composable
 fun CalculatorUI(
-    state: State<CalcultorState> ,
+    state: State<String>,
     onAction: (CalculatorAction)->Unit
 ){
     Box(modifier = Modifier.fillMaxSize().background(color = BackgroundBlack),
@@ -61,14 +64,20 @@ fun CalculatorUI(
         Column(modifier = Modifier.fillMaxWidth().padding(10.dp),
             verticalArrangement = Arrangement.spacedBy(7.dp)
         ) {
-            Text(text = state.value.num1 + (state.value.operator?.operator ?:"")+state.value.num2 , modifier = Modifier
+            Text(text = state.value , modifier = Modifier
                 .fillMaxWidth()
                 .padding(30.dp)
                 .weight(7f)
-                , textAlign = TextAlign.End , maxLines = 2 , fontWeight = FontWeight.Bold , fontSize = 60.sp, color = Color.White)
+                .fillMaxHeight()
+                , textAlign = TextAlign.End ,
+                fontWeight = FontWeight.Bold ,
+                maxLines = 10,
+                fontSize = 50.sp,
+                color = Color.White,
+                lineHeight = 40.sp)
 
             Row (horizontalArrangement = Arrangement.spacedBy(15.dp) , modifier = Modifier.weight(1f)){
-                CalculatorButton(content = "AC", modifier = Modifier.weight(1f) , fontSize = 30.sp, backGroundColor = LightGray, onCLick = {onAction(CalculatorAction.Clear)})
+                CalculatorButton(content = "CE", modifier = Modifier.weight(1f) , fontSize = 30.sp, backGroundColor = LightGray, onCLick = {onAction(CalculatorAction.Clear)})
                 CalculatorButton(content = "Del", modifier = Modifier.weight(1f), fontSize = 30.sp, backGroundColor = LightGray, onCLick = {onAction(CalculatorAction.Delete)})
                 CalculatorButton(content = "%", modifier = Modifier.weight(1f), fontSize = 30.sp, backGroundColor = LightGray, onCLick = {onAction(CalculatorAction.inputOperation(Operator.Modulus))})
                 CalculatorButton(content = "/", modifier = Modifier.weight(1f), fontSize = 30.sp, backGroundColor = LightGray, onCLick = {onAction(CalculatorAction.inputOperation(Operator.Divide))})
@@ -92,7 +101,9 @@ fun CalculatorUI(
                 CalculatorButton(content = "+", modifier = Modifier.weight(1f), fontSize = 30.sp, backGroundColor = LightGray, onCLick = {onAction(CalculatorAction.inputOperation(Operator.Add))})
             }
             Row (horizontalArrangement = Arrangement.spacedBy(15.dp) , modifier = Modifier.weight(1f)){
-                CalculatorButton(content = "00", modifier = Modifier.weight(1f), fontSize = 30.sp, onCLick = {onAction(CalculatorAction.inputNumber(-1))})
+                CalculatorButton(content = "^", modifier = Modifier.weight(1f), fontSize = 30.sp, onCLick = {onAction(CalculatorAction.inputOperation(
+                    Operator.Power
+                ))})
                 CalculatorButton(content = "0", modifier = Modifier.weight(1f), fontSize = 30.sp, onCLick = {onAction(CalculatorAction.inputNumber(0))})
                 CalculatorButton(content = ".", modifier = Modifier.weight(1f), fontSize = 30.sp, onCLick = {onAction(CalculatorAction.inputDecimal)})
                 CalculatorButton(content = "=", modifier = Modifier.weight(1f), fontSize = 30.sp , backGroundColor = DarkPurple, onCLick = {onAction(CalculatorAction.Answer)})
@@ -101,8 +112,11 @@ fun CalculatorUI(
     }
 }
 
+@SuppressLint("UnrememberedMutableState")
 @Preview(showBackground = true )
 @Composable
 fun ButtonPreview() {
-//    CalculatorUI()
+    var a = mutableStateOf("435555555555555555555555555555555555556666666666666666666666666666666666666666666666666666666666666666666")
+    var z : State<String> = a
+    CalculatorUI(a,{})
 }
