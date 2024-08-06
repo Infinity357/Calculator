@@ -53,7 +53,7 @@ fun CalculatorButton(
 
 @Composable
 fun CalculatorUI(
-    state: State<CalcultorState>,
+    state: State<CalcultorState> ,
     onAction: (CalculatorAction)->Unit
 ){
     Box(modifier = Modifier.fillMaxSize().background(color = BackgroundBlack),
@@ -65,7 +65,7 @@ fun CalculatorUI(
                 .fillMaxWidth()
                 .padding(30.dp)
                 .weight(7f)
-                , textAlign = TextAlign.End , maxLines = 2 , fontWeight = FontWeight.Bold , fontSize = 60.sp)
+                , textAlign = TextAlign.End , maxLines = 2 , fontWeight = FontWeight.Bold , fontSize = 60.sp, color = Color.White)
 
             Row (horizontalArrangement = Arrangement.spacedBy(15.dp) , modifier = Modifier.weight(1f)){
                 CalculatorButton(content = "AC", modifier = Modifier.weight(1f) , fontSize = 30.sp, backGroundColor = LightGray, onCLick = {onAction(CalculatorAction.Clear)})
