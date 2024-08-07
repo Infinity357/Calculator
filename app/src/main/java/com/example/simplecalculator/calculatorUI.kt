@@ -101,9 +101,7 @@ fun CalculatorUI(
                 CalculatorButton(content = "+", modifier = Modifier.weight(1f), fontSize = 30.sp, backGroundColor = LightGray, onCLick = {onAction(CalculatorAction.inputOperation(Operator.Add))})
             }
             Row (horizontalArrangement = Arrangement.spacedBy(15.dp) , modifier = Modifier.weight(1f)){
-                CalculatorButton(content = "^", modifier = Modifier.weight(1f), fontSize = 30.sp, onCLick = {onAction(CalculatorAction.inputOperation(
-                    Operator.Power
-                ))})
+                CalculatorButton(content = "^", modifier = Modifier.weight(1f), fontSize = 30.sp, onCLick = {onAction(CalculatorAction.inputOperation(Operator.Power))})
                 CalculatorButton(content = "0", modifier = Modifier.weight(1f), fontSize = 30.sp, onCLick = {onAction(CalculatorAction.inputNumber(0))})
                 CalculatorButton(content = ".", modifier = Modifier.weight(1f), fontSize = 30.sp, onCLick = {onAction(CalculatorAction.inputDecimal)})
                 CalculatorButton(content = "=", modifier = Modifier.weight(1f), fontSize = 30.sp , backGroundColor = DarkPurple, onCLick = {onAction(CalculatorAction.Answer)})
