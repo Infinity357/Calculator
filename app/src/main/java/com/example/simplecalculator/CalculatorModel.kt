@@ -40,7 +40,7 @@ class CalculatorModel {
     }
 
     fun Calculate() {
-        if(_state.value.isEmpty())
+        if(_state.value.isEmpty() || !_state.value.get(_state.value.length-1).isDigit())
             return
         val postfix: String = infixToPostfix(_state.value)
         val ans: Double = evaluatePostfix(postfix)
